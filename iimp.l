@@ -1,4 +1,5 @@
 %{
+#include "environ.h"
 #include "bilquad.h"
 #include "iimp.tab.h"
 #include <string.h>
@@ -48,6 +49,7 @@ VAR         [A-Z][A-Z0-9]*
     }
     return V;
 }
+
 
 %%
 int yyerror(char* s)
