@@ -31,23 +31,23 @@ extern int yyerror(char* s);
 
 S:      C           { ENV e = Envalloc(); evalexpr(&e,$1); }
 
-E:      E Pl T      { $$ = operand(Pl, 2, $1, $3); }
-        | E Mo T    { $$ = operand(Mo, 2, $1, $3); }
+E:      E Pl T      { $$ = op(Pl, 2, $1, $3); }
+        | E Mo T    { $$ = op(Mo, 2, $1, $3); }
         | T         { $$ = $1; };
 
-T:      T Mu F      { $$ = operand(Mu, 2, $1, $3); }
+T:      T Mu F      { $$ = op(Mu, 2, $1, $3); }
         | F         { $$ = $1; };
 
 F:      Lp E Rp     { $$ = $2; }
-        | I         { $$ = constant($1); }
+        | I         { $$ = cst($1); }
         | V         { $$ = id($1); };
 
-C:      V Af E              { $$ = operand(Af, 2, $1, $3);  }
-        | Sk                { $$ = operand(Sk, 0); }
+C:      V Af E              { $$ = op(Af, 2, $1, $3);  }
+        | Sk                { $$ = op(Sk, 0); }
         | Lp C Rp           { $$ = $2; }
-        | If E Th C El C    { $$ = operand(If, 3, $2, $4, $6); }
-        | Wh E Do C         { $$ = operand(Wh, 2, $2, $4); }
-        | C Se C            { $$ = operand(Se, 2, $1, $3);};
+        | If E Th C El C    { $$ = op(If, 3, $2, $4, $6); }
+        | Wh E Do C         { $$ = op(Wh, 2, $2, $4); }
+        | C Se C            { $$ = op(Se, 2, $1, $3);};
 
 %%
 int main(int ac, char** av)

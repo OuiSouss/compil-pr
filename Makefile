@@ -1,6 +1,6 @@
 SRCS	=	environ.c \
 		bilquad.c \
-		rho.c \
+		AST.C \
 		node.c
 
 OBJS	=	$(SRCS:.c=.o)

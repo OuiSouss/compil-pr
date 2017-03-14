@@ -14,7 +14,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-typedef enum { cst, ident, opr } TYPE;
+typedef enum { cstTYPE, idTYPE, opTYPE } TYPE;
 
 typedef struct s_cst
 {
@@ -42,11 +42,11 @@ typedef struct s_node
         ID id; // si identifiant
         OP opr; // si operation
     };
-} *NODE;
+}* NODE;
 
-extern NODE constant(int value);
+extern NODE cst(int value);
 extern NODE id(char* value);
-extern NODE operand(int op_type, int nargs, ...);
+extern NODE op(int op_type, int nargs, ...);
 extern void free_node(NODE nd);
 
 
