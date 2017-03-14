@@ -42,6 +42,13 @@ typedef struct s_node
         ID id; // si identifiant
         OP opr; // si operation
     };
-} NODE;
+} *NODE;
+
+extern NODE constant(int value);
+extern NODE id(char* value);
+extern NODE operand(int op_type, int nargs, ...);
+extern void free_node(NODE nd);
+
+
 #endif /* NODE_H */
 
