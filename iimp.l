@@ -1,11 +1,11 @@
 %{
+#include "node.h"
 #include "bilquad.h"
 #include "environ.h"
 #include "iimp.tab.h"
 #include <string.h>
 int arg = 0;
 %}
-
 %option noyywrap
 
 INT         [1-9][0-9]*
@@ -25,8 +25,9 @@ VAR         [A-Z][A-Z0-9]*
 "*"         { return Mu; }
 "("         { return Lp; }
 ")"         { return Rp; }
+\n        { yyterminate();}
 {INT}       {
-    yylval.val = atoi(yytext);
+    yylval.id = strdup(yytext);
     return I;
 }
 {VAR}       {

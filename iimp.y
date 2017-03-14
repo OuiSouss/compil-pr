@@ -1,38 +1,45 @@
 %{
+#include "node.h"
 #include "bilquad.h"
+#include "environ.h"
+#include "rho.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+
 extern int yylex();
 extern int yyerror(char* s);
+
 %}
 %union {
     char* id;
     int val;
-    QUAD quad;
+    struct s_node nd;
 }
 
-%token Af Sk Se If Th El Wh Do Pl Mo Mu Lp Rp I V
+%token <id> V
+%token <id> I
+%token Af Sk Se If Th El Wh Do Pl Mo Mu Lp Rp
 %left Se
 %nonassoc Th
 %nonassoc El
 %nonassoc Do
-%start C
-
-%type <id> V
-%type <val> I E T F
-%type <quad> C
+%type <nd> E T F
+%type <nd> C
 
 %%
 
-E:      E Pl T      { $$ = $1 + $3; }
-        | E Mo T    { $$ = $1 - $3; }
-        | T         {$$ = $1; };
+S:      C           {  }
 
-T:      T Mu F      { $$ = $1 * $3; }
-        | F         {$$ = $1; };
+E:      E Pl T      {  }
+        | E Mo T    {  }
+        | T         { $$ = $1; };
+
+T:      T Mu F      {  }
+        | F         { $$ = $1; };
 
 F:      Lp E Rp     { $$ = $2; }
-        | I         { $$ = $1; }
+        | I         { }
         | V         {  };
 
 C:      V Af E              {  }
