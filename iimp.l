@@ -1,6 +1,6 @@
 %{
-#include "environ.h"
 #include "bilquad.h"
+#include "environ.h"
 #include "iimp.tab.h"
 #include <string.h>
 int arg = 0;
@@ -12,7 +12,7 @@ INT         [1-9][0-9]*
 VAR         [A-Z][A-Z0-9]*
 
 %%
-":="        { yylval.storage.ETIQ = strdup(yytext); return Af; }
+":="        { return Af; }
 "Skip"      { return Sk; }
 ";"         { return Se; }
 "if"        { return If; }
@@ -26,27 +26,11 @@ VAR         [A-Z][A-Z0-9]*
 "("         { return Lp; }
 ")"         { return Rp; }
 {INT}       {
-    if (arg == 0)
-    {
-        arg = 1;
-        yylval.storage.ARG1 = strdup(yytext);
-    } else
-    {
-        arg = 0;
-        yylval.storage.ARG2 = strdup(yytext);
-    }
+    yylval.val = atoi(yytext);
     return I;
 }
 {VAR}       {
-    if (arg == 0)
-    {
-        arg = 1;
-        yylval.storage.ARG1 = strdup(yytext);
-    } else
-    {
-        arg = 0;
-        yylval.storage.ARG2 = strdup(yytext);
-    }
+    yylval.id = strdup(yytext);
     return V;
 }
 

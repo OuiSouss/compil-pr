@@ -6,9 +6,11 @@ extern int yylex();
 extern int yyerror(char* s);
 %}
 %union {
-    struct cellquad storage;
-    struct ENV* e;
+    char* id;
+    int val;
+    QUAD quad;
 }
+
 %token Af Sk Se If Th El Wh Do Pl Mo Mu Lp Rp I V
 %left Se
 %nonassoc Th
@@ -16,24 +18,25 @@ extern int yyerror(char* s);
 %nonassoc Do
 %start C
 
-%type <storage> F E T
-%type <e> C
+%type <id> V
+%type <val> I E T F
+%type <quad> C
 
 %%
 
-E:      E Pl T      { }
-        | E Mo T    {  }
+E:      E Pl T      { $$ = $1 + $3; }
+        | E Mo T    { $$ = $1 - $3; }
         | T         {$$ = $1; };
 
-T:      T Mu F      {  }
+T:      T Mu F      { $$ = $1 * $3; }
         | F         {$$ = $1; };
 
-F:      Lp E Rp     {  }
-        | I         {  }
+F:      Lp E Rp     { $$ = $2; }
+        | I         { $$ = $1; }
         | V         {  };
 
-C:      V Af E              { printf("V Af E => '%s' '%s' '%s'\n", $<storage>1.ARG1, $<storage>2.ETIQ, $<storage>3.ARG2); }
-        | Sk                { }
+C:      V Af E              {  }
+        | Sk                {  }
         | Lp C Rp           {$$ = $2; }
         | If E Th C El C    {  }
         | Wh E Do C         { }

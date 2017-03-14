@@ -6,6 +6,32 @@
 #include <string.h>
 #include "bilquad.h"
 #include "environ.h"
+/* Token type.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+  enum yytokentype
+  {
+    Af = 258,
+    Sk = 259,
+    Se = 260,
+    If = 261,
+    Th = 262,
+    El = 263,
+    Wh = 264,
+    Do = 265,
+    Pl = 266,
+    Mo = 267,
+    Mu = 268,
+    Lp = 269,
+    Rp = 270,
+    I = 271,
+    V = 272,
+    Afc = 273,
+    St = 274,
+    Jp = 275,
+    Jz = 276
+  };
+#endif /* YYTOKENTYPE */
 /*-------------------------------------------------------------------*/
 /* ----------------------------types---------------------------------*/
 /* QUAD,BILQUAD: definis dans bilquad.h                              */

@@ -1,3 +1,8 @@
+SRCS	=	environ.c \
+		bilquad.c
+
+OBJS	=	$(SRCS:.c=.o)
+
 LEX_IN	=   $(wildcard *.l)
 YACC_IN	=   $(wildcard *.y)
 
@@ -13,11 +18,11 @@ CFLAGS	    =
 LDFLAGS	    =
 
 .PHONY	    :	all flexalone yaccalone clean re
-.PRECIOUS   :	%.tab.c %.tab.h %.tab.o %.yy.c %.yy.o
+.PRECIOUS   :	%.tab.c %.tab.h %.tab.o %.yy.c %.yy.o %.o
 .SUFFIXES   :	.c .h .l .o .tab.c .tab.h .tab.o .y .yy.c .yy.o
 
-%			:   %.tab.o %.yy.o
-			$(CC) -o $@ $*.tab.o $*.yy.o
+%			:   %.tab.o %.yy.o $(OBJS)
+			$(CC) -o $@ $*.tab.o $*.yy.o $(OBJS)
 
 %.tab.c %.tab.h %.yy.c	:   %.y %.l
 			$(YACC) -o $*.tab.c $*.y
@@ -51,6 +56,7 @@ clean	    :
 	    $(RM) *~
 	    $(RM) *.tab.c *.tab.h *.tab.o
 	    $(RM) *.yy.c *.yy.o
+	    $(RM) $(OBJS)
 	    $(RM) $(LEX_OUT)
 	    $(RM) $(YACC_OUT)
 

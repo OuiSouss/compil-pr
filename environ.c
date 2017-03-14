@@ -5,6 +5,29 @@
 #include <stdlib.h>
 #include <string.h>
 #include "environ.h"
+
+/* Token type.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+  enum yytokentype
+  {
+    Af = 258,
+    Sk = 259,
+    Se = 260,
+    If = 261,
+    Th = 262,
+    El = 263,
+    Wh = 264,
+    Do = 265,
+    Pl = 266,
+    Mo = 267,
+    Mu = 268,
+    Lp = 269,
+    Rp = 270,
+    I = 271,
+    V = 272
+  };
+#endif /* YYTOKENTYPE */
 /*---------------------allocation memoire----------------------------*/
 char *Idalloc()
 {
