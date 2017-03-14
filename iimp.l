@@ -27,7 +27,7 @@ VAR         [A-Z][A-Z0-9]*
 ")"         { return Rp; }
 \n        { yyterminate();}
 {INT}       {
-    yylval.id = strdup(yytext);
+    yylval.val = atoi(yytext);
     return I;
 }
 {VAR}       {
