@@ -2,6 +2,9 @@
 #include "iimp.tab.h"
 #include "environ.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+
 static int eval_Mu(ENV* e, NODE nd);
 static int eval_Mo(ENV* e, NODE nd);
 static int eval_Pl(ENV* e, NODE nd);
@@ -35,7 +38,7 @@ static int eval_Pl(ENV* e, NODE nd)
 
 static int eval_Af(ENV* e, NODE nd)
 {
-    //initenv(e, nd->opr.operands[0]);
+    initenv(e, nd->opr.operands[0]->id.value);
     int rval = affect(*e, nd->opr.operands[0]->id.value, eval_node(e, nd->opr.operands[1]));
     return rval;
 }
@@ -71,6 +74,8 @@ static int eval_op(ENV* e, NODE nd)
 {
     switch (nd->opr.op)
     {
+        case Se :
+            return eval_Se(e, nd);
         case Wh :
             return eval_Wh(e, nd);
         case If :

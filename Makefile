@@ -15,7 +15,7 @@ YACC_OUT    =	$(patsubst %.y, %, $(YACC_IN))
 CC	=   gcc
 RM	=   rm -f
 LEX	=   flex
-YACC	=   bison -d
+YACC	=   bison -d -r state
 
 CFLAGS	    =
 LDFLAGS	    =

@@ -42,7 +42,7 @@ F:      Lp E Rp     { $$ = $2; }
         | I         { $$ = cst($1); }
         | V         { $$ = id($1); };
 
-C:      V Af E              { $$ = op(Af, 2, $1, $3);  }
+C:      V Af E              { $$ = op(Af, 2, id($1), $3);  }
         | Sk                { $$ = op(Sk, 0); }
         | Lp C Rp           { $$ = $2; }
         | If E Th C El C    { $$ = op(If, 3, $2, $4, $6); }

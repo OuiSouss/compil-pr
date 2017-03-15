@@ -8,7 +8,7 @@ int arg = 0;
 %}
 %option noyywrap
 
-INT         [1-9][0-9]*
+INT         [0-9][0-9]*
 VAR         [A-Z][A-Z0-9]*
 
 %%
@@ -25,7 +25,7 @@ VAR         [A-Z][A-Z0-9]*
 "*"         { return Mu; }
 "("         { return Lp; }
 ")"         { return Rp; }
-\n        { yyterminate();}
+\n          { ; }
 {INT}       {
     yylval.val = atoi(yytext);
     return I;
