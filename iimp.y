@@ -1,15 +1,13 @@
 %{
 #include "node.h"
-#include "bilquad.h"
 #include "environ.h"
-#include "rho.h"
 
-#include <stdio.h>
 #include <stdlib.h>
 
 extern int yylex();
 extern int yyerror(char* s);
- extern int evalexpr(ENV *environ, NODE nd);
+
+extern int evalexpr(ENV *environ, NODE nd);
 %}
 %union {
     char* id;

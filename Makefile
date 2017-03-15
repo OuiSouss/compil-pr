@@ -1,6 +1,4 @@
 SRCS	=	environ.c \
-		bilquad.c \
-		rho.c \
 		node.c \
 		AST.c
 
@@ -62,5 +60,6 @@ clean	    :
 	    $(RM) $(OBJS)
 	    $(RM) $(LEX_OUT)
 	    $(RM) $(YACC_OUT)
+	    $(RM) *.output
 
 re	    :	clean all

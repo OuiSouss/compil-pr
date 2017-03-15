@@ -1,10 +1,8 @@
 %{
 #include "node.h"
-#include "bilquad.h"
 #include "environ.h"
 #include "iimp.tab.h"
 #include <string.h>
-int arg = 0;
 %}
 %option noyywrap
 
