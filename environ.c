@@ -102,7 +102,7 @@ int affect(ENV rho, char *var, int val)
 
 /* affiche l'environnement */  
 int ecrire_env(ENV rho)
-{ if (rho==NULL)
+{ if (rho==NULL || rho->ID==NULL)
     {printf("fin d' environnement \n");
       return(EXIT_SUCCESS);}
   else
