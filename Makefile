@@ -1,6 +1,8 @@
 SRCS	=	environ.c \
 		node.c \
-		AST.c
+		AST.c \
+		C3A.c \
+		evalexpr.c
 
 OBJS	=	$(SRCS:.c=.o)
 
