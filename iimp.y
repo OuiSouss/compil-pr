@@ -43,7 +43,7 @@ F:      Lp E Rp     { $$ = $2; }
         | V         { $$ = id($1); };
 
 C:      V Af E              { $$ = op(Af, 2, id($1), $3);  }
-        | Sk                { $$ = op(Sk, 0); }
+        | Sk                { $$ = op(Sk, 2, NULL, NULL); }
         | Lp C Rp           { $$ = $2; }
         | If E Th C El C    { $$ = op(If, 3, $2, $4, $6); }
         | Wh E Do C         { $$ = op(Wh, 2, $2, $4); }

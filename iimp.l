@@ -8,12 +8,12 @@ int arg = 0;
 %}
 %option noyywrap
 
-INT         [0-9][0-9]*
-VAR         [A-Z][A-Z0-9]*
+INT         [1-9][0-9]*
+VAR         [a-zA-Z][a-zA-Z0-9]*
 
 %%
 ":="        { return Af; }
-"Skip"      { return Sk; }
+"skip"      { return Sk; }
 ";"         { return Se; }
 "if"        { return If; }
 "then"      { return Th; }
