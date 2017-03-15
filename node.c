@@ -26,7 +26,7 @@ NODE    op(int op_type, int nargs, ...)
     OP* oper = &(ptr->opr);
     oper->op = op_type;
     oper->nargs = nargs;
-    oper->operands = malloc(sizeof(*(oper->operands)) * (nargs + 1));
+    oper->operands = malloc(sizeof(*(oper->operands)) * (nargs + 3));
     va_start(ap, nargs);
     for (int i = 0; i < nargs; ++i)
     {

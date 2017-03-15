@@ -101,6 +101,6 @@ int evalexpr(ENV* environ, NODE nd)
     int res = eval_node(environ, nd);
     ecrire_env(*environ);
     ecrire_AST(nd);
-    ecrire_C3A(environ, nd);
+    eval_C3A(environ, nd);
     return res;
 }
