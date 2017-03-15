@@ -23,7 +23,7 @@ VAR         [a-zA-Z][a-zA-Z0-9]*
 "*"         { return Mu; }
 "("         { return Lp; }
 ")"         { return Rp; }
-\n          { ; }
+[ \t\n]     { ; }
 {INT}       {
     yylval.val = atoi(yytext);
     return I;
@@ -32,7 +32,8 @@ VAR         [a-zA-Z][a-zA-Z0-9]*
     yylval.id = strdup(yytext);
     return V;
 }
-
+""          { ; }
+.           { return yytext[0]; }
 
 %%
 int yyerror(char* s)
